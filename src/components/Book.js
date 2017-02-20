@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import '../css/Book.css';
 
 class Book extends Component {
+  static propTypes = {
+    title: React.PropTypes.string.isRequired,
+    author: React.PropTypes.string.isRequired,
+  }
+
   constructor(props) {
     super(props);
 
@@ -10,7 +15,7 @@ class Book extends Component {
     };
   }
 
-  onClick = () => {
+  onClickFavorite = () => {
     this.setState({
       favorited: !this.state.favorited,
     });
@@ -22,10 +27,12 @@ class Book extends Component {
     return (
       <li
         className="book"
-        onClick={this.onClick}
       >
         <div>
-          <span className={`favorite ${favoriteClass}`} />
+          <span
+            className={`favorite ${favoriteClass}`}
+            onClick={this.onClickFavorite}
+          />
           {this.props.title}
         </div>
         <div>
@@ -35,10 +42,5 @@ class Book extends Component {
     );
   }
 }
-
-Book.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  author: React.PropTypes.string.isRequired,
-};
 
 export default Book;
