@@ -2,10 +2,30 @@ import React, { Component } from 'react';
 import '../css/Book.css';
 
 class Book extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      favorited: false,
+    };
+  }
+
+  onClick = () => {
+    this.setState({
+      favorited: !this.state.favorited,
+    });
+  }
+
   render() {
+    const favoriteClass = this.state.favorited ? 'enabled' : '';
+
     return (
-      <li className="book">
+      <li
+        className="book"
+        onClick={this.onClick}
+      >
         <div>
+          <span className={`favorite ${favoriteClass}`} />
           {this.props.title}
         </div>
         <div>
