@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Book from './components/Book';
 import './css/App.css';
 
 class App extends Component {
@@ -10,9 +11,10 @@ class App extends Component {
         >
           <div>Story Time</div>
         </div>
-        <h2>Coolest latest books!</h2>
+        <h2>Your Books</h2>
         <ul>
-          <li>Book</li>
+          <Book />
+          <Book />
         </ul>
       </div>
     );
