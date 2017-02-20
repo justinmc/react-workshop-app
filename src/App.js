@@ -13,8 +13,8 @@ class App extends Component {
         </div>
         <h2>Your Books</h2>
         <ul>
-          <Book />
-          <Book />
+          <Book title="Treasure Island" author="Robert Louis Stevenson" />
+          <Book title="Go Dog Go" author="Dr. Seuss" />
         </ul>
       </div>
     );
