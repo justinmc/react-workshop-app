@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import apiUtils from '../utils/api_utils';
+import '../css/Add.css';
 
 class Add extends Component {
   static propTypes = {
@@ -13,6 +14,7 @@ class Add extends Component {
       author: '',
       loading: false,
       title: '',
+      error: '',
     };
   }
 
@@ -33,6 +35,7 @@ class Add extends Component {
 
     this.setState({
       loading: true,
+      error: '',
     });
 
     // Look up the book
@@ -43,18 +46,19 @@ class Add extends Component {
         title: '',
         author: '',
         loading: false,
+        error: '',
       });
     }).catch((error) => {
-      console.error(error);
       this.setState({
         loading: false,
+        error: error.message,
       });
     });
   }
 
   render() {
     return (
-      <form className="Add" onSubmit={this.onSubmit}>
+      <form className="add" onSubmit={this.onSubmit}>
         <input
           type="text"
           placeholder="Title"
@@ -74,6 +78,9 @@ class Add extends Component {
           disabled={this.state.loading}
           value="submit"
         />
+        <div className="error">
+          {this.state.error}
+        </div>
       </form>
     );
   }

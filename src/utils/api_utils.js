@@ -29,11 +29,19 @@ const apiUtils = {
       // Let's just take the first result and hope it's ok :)
       const bookData = bookDatas[0];
 
+      // Some basic validation
+      if (!bookData.volumeInfo.title) {
+        throw new Error('Invalid title data, try another book.');
+      }
+      if (!bookData.volumeInfo.authors || !bookData.volumeInfo.authors.length) {
+        throw new Error('Invalid author data, try another book.');
+      }
+
       // Add description and fill in typed data with fetched data
       return {
         title: bookData.volumeInfo.title,
         description: bookData.volumeInfo.description,
-        author: bookData.volumeInfo.authors && bookData.volumeInfo.authors[0],
+        author: bookData.volumeInfo.authors[0],
       };
     });
   },
