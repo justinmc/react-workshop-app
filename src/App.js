@@ -9,8 +9,16 @@ class App extends Component {
 
     this.state = {
       books: [
-        { title: 'Treasure Island', author: 'Robert Louis Stevenson' },
-        { title: 'Go Dog Go', author: 'Dr. Seuss' },
+        {
+          title: 'Treasure Island',
+          description: 'Pirates and stuff, arr!',
+          author: 'Robert Louis Stevenson',
+        },
+        {
+          title: 'Go Dog Go',
+          description: 'A riveting tale of the fast paced life of the modern canine.',
+          author: 'Dr. Seuss',
+        },
       ],
     };
   }
@@ -39,6 +47,7 @@ class App extends Component {
                 key={book.title}
                 title={book.title}
                 author={book.author}
+                description={book.description}
               />
             )
           }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import apiUtils from '../utils/api_utils';
 
 class Add extends Component {
   static propTypes = {
@@ -28,12 +29,16 @@ class Add extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.onAdd({ title: this.state.title, author: this.state.author });
 
-    this.setState({
-      title: '',
-      author: '',
-    });
+    // Look up the book
+    apiUtils.findBook(this.state.title, this.state.author).then((fetchedBook) => {
+      this.props.onAdd(fetchedBook);
+
+      this.setState({
+        title: '',
+        author: '',
+      });
+    }).catch(console.error.bind(console));
   }
 
   render() {

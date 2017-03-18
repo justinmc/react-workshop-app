@@ -17,3 +17,9 @@
 .favorite.enabled {
   background-color: tomato;
 }
+
+.description {
+  color: #afafaf;
+  font-size: 0.9rem;
+  margin: 8px 0;
+}

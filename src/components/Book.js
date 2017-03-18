@@ -2,9 +2,14 @@ import React, { Component } from 'react';
 import '../css/Book.css';
 
 class Book extends Component {
+  static defaultProps = {
+    description: '',
+  }
+
   static propTypes = {
     title: React.PropTypes.string.isRequired,
     author: React.PropTypes.string.isRequired,
+    description: React.PropTypes.string,
   }
 
   constructor(props) {
@@ -34,6 +39,9 @@ class Book extends Component {
             onClick={this.onClickFavorite}
           />
           {this.props.title}
+        </div>
+        <div className="description">
+          {this.props.description}
         </div>
         <div>
           {`by ${this.props.author}`}
