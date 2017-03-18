@@ -10,8 +10,9 @@ class Add extends Component {
     super(props);
 
     this.state = {
-      title: '',
       author: '',
+      loading: false,
+      title: '',
     };
   }
 
@@ -30,6 +31,10 @@ class Add extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
+    this.setState({
+      loading: true,
+    });
+
     // Look up the book
     apiUtils.findBook(this.state.title, this.state.author).then((fetchedBook) => {
       this.props.onAdd(fetchedBook);
@@ -37,8 +42,14 @@ class Add extends Component {
       this.setState({
         title: '',
         author: '',
+        loading: false,
       });
-    }).catch(console.error.bind(console));
+    }).catch((error) => {
+      console.error(error);
+      this.setState({
+        loading: false,
+      });
+    });
   }
 
   render() {
@@ -47,17 +58,20 @@ class Add extends Component {
         <input
           type="text"
           placeholder="Title"
+          disabled={this.state.loading}
           value={this.state.title}
           onChange={this.onChangeTitle}
         />
         <input
           type="text"
           placeholder="Author"
+          disabled={this.state.loading}
           value={this.state.author}
           onChange={this.onChangeAuthor}
         />
         <input
           type="submit"
+          disabled={this.state.loading}
           value="submit"
         />
       </form>
