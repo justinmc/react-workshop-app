@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Add from './components/Add';
 import Book from './components/Book';
 import './css/App.css';
 
-class App extends Component {
+class App extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -23,10 +23,8 @@ class App extends Component {
   }
 
   onAddBook = (book) => {
-    const books = this.state.books;
-    books.unshift(book);
     this.setState({
-      books,
+      books: [book].concat(this.state.books),
     });
   }
 
