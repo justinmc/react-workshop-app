@@ -38,7 +38,21 @@ class Add extends Component {
       error: '',
     });
 
+    this.props.onAdd({
+      title: this.state.title,
+      author: this.state.author,
+      description: 'No description!',
+    });
+
+    this.setState({
+      title: '',
+      author: '',
+      loading: false,
+      error: '',
+    });
+
     // Look up the book
+    /*
     apiUtils.findBook(this.state.title, this.state.author).then((fetchedBook) => {
       this.props.onAdd(fetchedBook);
 
@@ -54,6 +68,7 @@ class Add extends Component {
         error: error.message,
       });
     });
+    */
   }
 
   render() {
