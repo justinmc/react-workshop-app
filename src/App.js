@@ -28,8 +28,7 @@ class App extends PureComponent {
   }
 
   onAddBook = (book) => {
-    this.setState({
-      books: [book].concat(this.state.books),
+    this.setState({ books: [book].concat(this.state.books),
     });
   }
 
@@ -58,9 +57,13 @@ class App extends PureComponent {
   }
 
   render() {
-    let books = this.state.books;
+    let displayBooks;
+    const favoritedBooks = this.state.books.filter(book => book.favorited);
+
     if (this.state.favoritesFilterOn) {
-      books = books.filter(book => book.favorited);
+      displayBooks = favoritedBooks;
+    } else {
+      displayBooks = this.state.books;
     }
 
     return (
@@ -73,13 +76,13 @@ class App extends PureComponent {
         <h2>Your Books</h2>
         <Add onAdd={this.onAddBook} />
         <FavoritesFilter
-          count={0}
+          count={favoritedBooks.length}
           favoritesFilterOn={this.state.favoritesFilterOn}
           onChange={this.onChangeFilter}
         />
         <ul>
           {
-            books.map(book =>
+            displayBooks.map(book =>
               <Book
                 key={book.title}
                 title={book.title}
