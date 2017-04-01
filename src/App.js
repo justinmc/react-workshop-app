@@ -7,18 +7,19 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
 
-    const books = [];
-    for (let i = 0; i < 1000; i += 1) {
-      const randomString = Math.round(Math.random() * 10e10).toString(36);
-      books.push({
-        title: randomString,
-        description: 'Indescribable',
-        author: 'Person Who Writes Many Books',
-      });
-    }
-
     this.state = {
-      books,
+      books: [
+        {
+          title: 'Treasure Island',
+          description: 'Pirates and stuff, arr!',
+          author: 'Robert Louis Stevenson',
+        },
+        {
+          title: 'Go Dog Go',
+          description: 'A riveting tale of the fast paced life of the modern canine.',
+          author: 'Dr. Seuss',
+        },
+      ],
     };
   }
 
