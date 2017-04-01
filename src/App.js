@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import Add from './components/Add';
 import Book from './components/Book';
+import FavoritesFilter from './components/FavoritesFilter';
 import './css/App.css';
 
 class App extends PureComponent {
@@ -8,6 +9,7 @@ class App extends PureComponent {
     super(props);
 
     this.state = {
+      favoritesFilterOn: false,
       books: [
         {
           title: 'Treasure Island',
@@ -21,6 +23,12 @@ class App extends PureComponent {
         },
       ],
     };
+  }
+
+  onChangeFilter = (favoritesFilterOn) => {
+    this.setState({
+      favoritesFilterOn,
+    });
   }
 
   onAddBook = (book) => {
@@ -39,6 +47,11 @@ class App extends PureComponent {
         </div>
         <h2>Your Books</h2>
         <Add onAdd={this.onAddBook} />
+        <FavoritesFilter
+          count={0}
+          favoritesFilterOn={this.state.favoritesFilterOn}
+          onChange={this.onChangeFilter}
+        />
         <ul>
           {
             this.state.books.map(book =>
