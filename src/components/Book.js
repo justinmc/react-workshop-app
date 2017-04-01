@@ -7,27 +7,18 @@ class Book extends Component {
   }
 
   static propTypes = {
-    title: React.PropTypes.string.isRequired,
     author: React.PropTypes.string.isRequired,
     description: React.PropTypes.string,
-  }
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      favorited: false,
-    };
+    favorited: React.PropTypes.bool.isRequired,
+    title: React.PropTypes.string.isRequired,
   }
 
   onClickFavorite = () => {
-    this.setState({
-      favorited: !this.state.favorited,
-    });
+    this.props.onToggleFavorite(this.props.title);
   }
 
   render() {
-    const favoriteClass = this.state.favorited ? 'enabled' : '';
+    const favoriteClass = this.props.favorited ? 'enabled' : '';
 
     return (
       <li

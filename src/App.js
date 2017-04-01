@@ -15,14 +15,22 @@ class App extends PureComponent {
           title: 'Treasure Island',
           description: 'Pirates and stuff, arr!',
           author: 'Robert Louis Stevenson',
+          favorited: false,
         },
         {
           title: 'Go Dog Go',
           description: 'A riveting tale of the fast paced life of the modern canine.',
           author: 'Dr. Seuss',
+          favorited: false,
         },
       ],
     };
+  }
+
+  onAddBook = (book) => {
+    this.setState({
+      books: [book].concat(this.state.books),
+    });
   }
 
   onChangeFilter = (favoritesFilterOn) => {
@@ -31,9 +39,21 @@ class App extends PureComponent {
     });
   }
 
-  onAddBook = (book) => {
+  onToggleBookFavorite = (title) => {
+    // Copy books because this is a pure component
+    const updatedBooks = new Array(...this.state.books);
+
+    const index = updatedBooks.findIndex(book =>
+      book.title === title,
+    );
+
+    // Also have to copy the book itself
+    updatedBooks[index] = Object.assign({}, updatedBooks[index], {
+      favorited: !updatedBooks[index].favorited,
+    });
+
     this.setState({
-      books: [book].concat(this.state.books),
+      books: updatedBooks,
     });
   }
 
@@ -60,6 +80,8 @@ class App extends PureComponent {
                 title={book.title}
                 author={book.author}
                 description={book.description}
+                favorited={book.favorited}
+                onToggleFavorite={this.onToggleBookFavorite}
               />
             )
           }

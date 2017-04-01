@@ -42,6 +42,7 @@ const apiUtils = {
         title: bookData.volumeInfo.title,
         description: bookData.volumeInfo.description,
         author: bookData.volumeInfo.authors[0],
+        favorited: false,
       };
     });
   },
