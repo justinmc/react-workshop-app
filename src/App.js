@@ -58,6 +58,11 @@ class App extends PureComponent {
   }
 
   render() {
+    let books = this.state.books;
+    if (this.state.favoritesFilterOn) {
+      books = books.filter(book => book.favorited);
+    }
+
     return (
       <div className="App">
         <div
@@ -74,7 +79,7 @@ class App extends PureComponent {
         />
         <ul>
           {
-            this.state.books.map(book =>
+            books.map(book =>
               <Book
                 key={book.title}
                 title={book.title}
