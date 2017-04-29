@@ -1,4 +1,5 @@
 # React Workshop Demo
+Demo app for my [React In a Day workshop](https://github.com/justinmc/react-workshop).
 
 ## Setup
 You'll need a Google Books api key in order to use this app.  You can get one at: https://developers.google.com/books/docs/v1/using.
